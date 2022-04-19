@@ -20,9 +20,15 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence(mt_rand(3, 10)),
             'slug' => $this->faker->slug(),
             'excerpt' => $this->faker->paragraph(),
-            'body' => $this->faker->paragraph(mt_rand(5, 10)),
-            'category_id' => 1,
-            'user_id' => 1,
+            // 'body' => '<p>' . implode('<p></p>', $this->faker->paragraphs(mt_rand(5, 10))) . '</p>',
+            'body' => collect($this->faker->paragraphs(mt_rand(5, 10)))
+                //map digunakan untuk mengubah isi dari array menjadi string
+                //fn adalah function yang akan dijalankan
+                ->map(fn ($p) => "<p>$p</p>")
+                //implode adalah untuk menggabungkan array menjadi string
+                ->implode(''),
+            'category_id' => mt_rand(1, 3),
+            'user_id' => mt_rand(1, 5),
         ];
     }
 }

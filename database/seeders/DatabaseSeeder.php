@@ -19,11 +19,11 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(5)->create();
 
-        Post::factory(10)->create();
+        Post::factory(30)->create();
 
         Category::create([
-            'name' => 'PHP Language',
-            'slug' => 'php-lang',
+            'name' => 'PHP',
+            'slug' => 'php',
         ]);
 
         Category::create([
@@ -32,8 +32,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Category::create([
-            'name' => 'JavaScript',
-            'slug' => 'javascript',
+            'name' => 'Personal',
+            'slug' => 'personal',
         ]);
 
         // User::create([
