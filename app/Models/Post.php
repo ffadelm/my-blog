@@ -11,6 +11,8 @@ class Post extends Model
 
     //protected $fillable = ['title', 'excerpt', 'body'];
     protected $guarded = ['id'];
+    //with di gunakan untuk mengambil data dari model yang lain menggunakan eager loading
+    protected $with = ['author', 'category'];
 
     public function category()
     {

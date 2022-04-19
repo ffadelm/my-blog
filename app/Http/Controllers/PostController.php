@@ -12,8 +12,7 @@ class PostController extends Controller
         return view('posts', [
             "title" => "All Posts",
             //"posts" => Post::all()
-            //with di gunakan untuk mengambil data dari model yang lain menggunakan eager loading
-            "posts" => Post::with(['author', 'category'])->latest()->get()
+            "posts" => Post::latest()->get()
         ]);
     }
 
