@@ -9,18 +9,30 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
+        @if (session()->has('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ session('error') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         <h1 class="h3 mb-3 fw-bold text-center">Welcome to The Blog,<br> Please Login</h1>
-        <form>
+        <form action="/login" method="POST">
+            @csrf
             <!-- Email input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="email">Email address</label>
-                <input type="email" name="email" id="email" class="form-control" placeholder="example@mail.com" />
+                <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="example@mail.com" autofocus required value="{{ old('email') }}" />
+                @error('email')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" class="form-control" placeholder="password123" />
+                <input type="password" name="password" id="password" class="form-control" required />
             </div>
 
             <!-- Submit button -->
