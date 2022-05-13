@@ -27,7 +27,7 @@
                         Welcome, {{ auth()->user()->username }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-layout-text-window-reverse"></i> My Dashboard</a></li>
+                        <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-layout-text-window-reverse"></i> My Dashboard</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
