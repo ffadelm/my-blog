@@ -16,7 +16,7 @@
                     {!! $post->body !!}
                 </article>
             </article>
-            <a href="/posts" class="text-decoration-none btn btn-danger ">Kembali</a>
+            <a href="/dashboard/posts" class="text-decoration-none btn btn-danger ">Kembali</a>
         </div>
     </div>
 </div>
