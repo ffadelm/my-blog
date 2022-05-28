@@ -13,6 +13,7 @@
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+
         <div class="form-group mb-3">
             <label class="form-label" for="slug">Slug</label>
             <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" value="{{old('slug')}}" required>
@@ -20,6 +21,7 @@
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+
         <div class="form-group mb-3">
             <label class="form-label" for="category_id">Category</label>
             <select class="form-control" id="category_id" name="category_id">
@@ -32,13 +34,16 @@
                 @endforeach
             </select>
         </div>
+
         <div class="form-group mb-3">
-            <label for="image" class="form-label @error('image') is-invalid @enderror">Upload Image</label>
-            <input type="file" class="form-control" id="image" name="image">
+            <label for="image" class="form-label @error('image') is-invalid @enderror">Upload Image</label> <br>
+            <img class="img-preview img-fluid mb-3 col-sm-5">
+            <input type="file" class="form-control" id="image" name="image" onchange="previewImage()">
             @error('image')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+
         <div class="form-group mb-3">
             <label class="form-label" for="body">Body</label>
             @error('body')
@@ -47,6 +52,7 @@
             <input id="body" type="hidden" name="body" value="{{old('body')}}">
             <trix-editor input="body"></trix-editor>
         </div>
+
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Create Post</button>
             <a href="/dashboard/posts" class="btn btn-secondary">back</a>
@@ -69,5 +75,24 @@
     document.addEventListener('trix-file-accept', function(e) {
         e.preventDefault();
     });
+
+    //preview image
+    function previewImage() {
+        const input = document.querySelector('#image');
+        const image = document.querySelector('.img-preview');
+
+        image.style.display = 'block';
+
+        const file = input.files[0];
+        const reader = new FileReader();
+
+        reader.addEventListener('load', function() {
+            image.src = this.result;
+        });
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
 </script>
 @endsection

@@ -4,7 +4,7 @@
     <h1 class="h2">Edit post</h1>
 </div>
 <div class="col-lg-8 mb-5">
-    <form action="/dashboard/posts/{{ $post->slug }}" method="POST">
+    <form action="/dashboard/posts/{{ $post->slug }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div class="form-group mb-3">
@@ -33,6 +33,25 @@
                 @endforeach
             </select>
         </div>
+
+        <div class="form-group mb-3">
+            <label for="image" class="form-label @error('image') is-invalid @enderror">Upload Image</label>
+
+            <input type="hidden" name="oldImage" value="{{ $post->image }}">
+
+            @if ($post->image)
+            <div class="mb-3">
+                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="img-preview img-fluid col-sm-5">
+            </div>
+            @else
+            <img class="img-preview img-fluid mb-3 col-sm-5">
+            @endif
+            <input type="file" class="form-control" id="image" name="image" onchange="previewImage()">
+            @error('image')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
         <div class="form-group mb-3">
             <label class="form-label" for="body">Body</label>
             @error('body')
@@ -63,5 +82,24 @@
     document.addEventListener('trix-file-accept', function(e) {
         e.preventDefault();
     });
+
+    //preview image
+    function previewImage() {
+        const input = document.querySelector('#image');
+        const image = document.querySelector('.img-preview');
+
+        image.style.display = 'block';
+
+        const file = input.files[0];
+        const reader = new FileReader();
+
+        reader.addEventListener('load', function() {
+            image.src = this.result;
+        });
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
 </script>
 @endsection
