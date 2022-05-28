@@ -27,7 +27,7 @@ class PostFactory extends Factory
                 ->map(fn ($p) => "<p>$p</p>")
                 //implode adalah untuk menggabungkan array menjadi string
                 ->implode(''),
-            'category_id' => mt_rand(1, 3),
+            'category_id' => mt_rand(1, 5),
             'user_id' => mt_rand(1, 5),
         ];
     }
