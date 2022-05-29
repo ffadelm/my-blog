@@ -27,9 +27,8 @@
                 <th scope="row">{{ $loop->iteration }}</th>
                 <td>{{ $category->name }}</td>
                 <td>
-                    <a href="/dashboard/categories/{{ $category->slug }}" class="badge bg-success"><span data-feather="eye"></span></a>
-                    <a href="/dashboard/categories/{{ $category->slug }}/edit" class="badge bg-primary"><span data-feather="edit"></span></a>
-                    <form action="/dashboard/categories/{{$category->slug}}" method="post" class="d-inline">
+                    <a href="/dashboard/categories/{{ $category->id }}/edit" class="badge bg-primary"><span data-feather="edit"></span></a>
+                    <form action="/dashboard/categories/{{$category->id}}" method="post" class="d-inline">
                         @csrf
                         @method('delete')
                         <button type="submit" class="badge bg-danger border-0" onclick="return confirm('Are you sure to delete this data?')"><span data-feather="trash-2"></span></button>
