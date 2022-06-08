@@ -17,6 +17,22 @@
     <script src="https://kit.fontawesome.com/92b8caa89a.js" crossorigin="anonymous"></script>
 
     <title>The Blog | {{ $title }}</title>
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
